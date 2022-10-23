@@ -1,0 +1,112 @@
+C51 COMPILER V9.60.0.0   DROWSY                                                            08/24/2021 20:13:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DROWSY
+OBJECT MODULE PLACED IN .\Objects\drowsy.obj
+COMPILER INVOKED BY: C:\Users\Admin\Desktop\v5\C51\BIN\C51.EXE drowsy.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\drowsy.lst) TABS(2) OBJECT(.\Objects\drowsy.obj)
+
+line level    source
+
+   1          #include<REGX51.h>
+   2          
+   3          sbit rs = P3^7;
+   4          sbit en = P3^6;
+   5          
+   6          sbit EyeBlinkSensor = P1^0;
+   7          
+   8          sbit Buzzer = P1^1;
+   9          
+  10          sbit M11 = P1^2;
+  11          sbit M12 = P1^3;
+  12          sbit M21 = P1^4;
+  13          sbit M22 = P1^5;
+  14          
+  15          int l;
+  16          
+  17          void delay(unsigned char a)
+  18          {
+  19   1        int i,j;
+  20   1        for(i=0;i<a;i++)
+  21   1        for(j=0;j<=1000;j++);
+  22   1      }
+  23          
+  24          void Cmd(unsigned char a)
+  25          {
+  26   1        rs=0;
+  27   1        P2=a;
+  28   1        en=1;
+  29   1        delay(10);
+  30   1        en=0;
+  31   1      }
+  32          
+  33          void Data(unsigned char a)
+  34          {
+  35   1        rs=1;
+  36   1        P2=a;
+  37   1        en=1;
+  38   1        delay(10);
+  39   1        en=0;
+  40   1      }
+  41          
+  42          void String(unsigned char *p)
+  43          {
+  44   1        while(*p)
+  45   1          Data(*p++);
+  46   1      }   
+  47          
+  48          void main()
+  49          {
+  50   1        M11 = 0;
+  51   1        M12 = 0;
+  52   1        M21 = 0;
+  53   1        M22 = 0;
+  54   1        Buzzer = 0;
+C51 COMPILER V9.60.0.0   DROWSY                                                            08/24/2021 20:13:46 PAGE 2   
+
+  55   1        Cmd(0x38);
+  56   1        Cmd(0x0E);
+  57   1        Cmd(0x80);
+  58   1        String("  DROWSY DRIVER  ");
+  59   1        Cmd(0xc0);
+  60   1        String("DETECTING SYSTEM");
+  61   1        delay(500);
+  62   1        Cmd(0x01);
+  63   1        while(1)
+  64   1        {
+  65   2          if(EyeBlinkSensor == 0)
+  66   2          {
+  67   3            Buzzer = 1;
+  68   3            M11=0; M12=0; M21=0; M22=0;
+  69   3            Cmd(0x80);
+  70   3            String("  DRIVER  IS  ");
+  71   3            Cmd(0xc0);
+  72   3            String("  SLEEPING....  ");
+  73   3            
+  74   3          } 
+  75   2          else
+  76   2          {
+  77   3            Buzzer = 0;
+  78   3            M11=1; M12=0; M21=1; M22=0;
+  79   3            Cmd(0x80);
+  80   3            String("DRIVER IS NOT ");
+  81   3            Cmd(0xc0);
+  82   3            String("SLEEPING  ");
+  83   3          } 
+  84   2        }
+  85   1      }
+  86            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    237    ----
+   CONSTANT SIZE    =     93    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

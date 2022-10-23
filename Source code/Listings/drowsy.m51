@@ -1,0 +1,229 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    08/30/2021  12:23:26  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\USERS\ADMIN\DESKTOP\V5\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\drowsy.obj TO .\Objects\drowsy PRINT (.\List
+>> ings\drowsy.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\drowsy.obj (DROWSY)
+  C:\USERS\ADMIN\DESKTOP\V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\drowsy (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            DATA    000BH     0002H     UNIT         ?DT?DROWSY
+            IDATA   000DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     008DH     UNIT         ?PR?MAIN?DROWSY
+            CODE    088DH     005DH     UNIT         ?CO?DROWSY
+            CODE    08EAH     002BH     UNIT         ?PR?_DELAY?DROWSY
+            CODE    0915H     0025H     UNIT         ?PR?_STRING?DROWSY
+            CODE    093AH     0019H     UNIT         ?C?LIB_CODE
+            CODE    0953H     000CH     UNIT         ?C_C51STARTUP
+            CODE    095FH     0008H     UNIT         ?PR?_CMD?DROWSY
+            CODE    0967H     0008H     UNIT         ?PR?_DATA?DROWSY
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\drowsy (?C_STARTUP)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?DROWSY
+
+?PR?MAIN?DROWSY                -----    -----
+  +--> ?PR?_CMD?DROWSY
+  +--> ?CO?DROWSY
+  +--> ?PR?_STRING?DROWSY
+  +--> ?PR?_DELAY?DROWSY
+
+?PR?_CMD?DROWSY                -----    -----
+  +--> ?PR?_DELAY?DROWSY
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/30/2021  12:23:26  PAGE 2
+
+
+?PR?_STRING?DROWSY             0008H    0003H
+  +--> ?PR?_DATA?DROWSY
+
+?PR?_DATA?DROWSY               -----    -----
+  +--> ?PR?_DELAY?DROWSY
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\drowsy (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0953H         SEGMENT       ?C_C51STARTUP
+  I:000DH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0956H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0953H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:0953H         LINE#         133
+  C:0955H         LINE#         134
+  C:0956H         LINE#         135
+  C:0957H         LINE#         136
+  C:0959H         LINE#         185
+  C:095CH         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        DROWSY
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  B:0090H.1       PUBLIC        Buzzer
+  C:08F0H         PUBLIC        _delay
+  C:095FH         PUBLIC        _Cmd
+  B:0090H.0       PUBLIC        EyeBlinkSensor
+  C:0800H         PUBLIC        main
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/30/2021  12:23:26  PAGE 3
+
+
+  B:0090H.2       PUBLIC        M11
+  B:0090H.4       PUBLIC        M21
+  B:0090H.3       PUBLIC        M12
+  B:0090H.5       PUBLIC        M22
+  B:00B0H.6       PUBLIC        en
+  B:00B0H.7       PUBLIC        rs
+  D:000BH         PUBLIC        l
+  C:0915H         PUBLIC        _String
+  C:0967H         PUBLIC        _Data
+  -------         PROC          L?0021
+  -------         ENDPROC       L?0021
+  -------         PROC          _DELAY
+  D:0007H         SYMBOL        a
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:08F0H         LINE#         17
+  C:08F0H         LINE#         18
+  C:08F0H         LINE#         20
+  C:08FFH         LINE#         21
+  C:0914H         LINE#         22
+  -------         ENDPROC       _DELAY
+  -------         PROC          _CMD
+  D:0007H         SYMBOL        a
+  C:095FH         LINE#         24
+  C:095FH         LINE#         25
+  C:095FH         LINE#         26
+  C:0961H         LINE#         27
+  C:0961H         LINE#         28
+  C:0961H         LINE#         29
+  C:0964H         LINE#         30
+  C:0966H         LINE#         31
+  -------         ENDPROC       _CMD
+  -------         PROC          _DATA
+  D:0007H         SYMBOL        a
+  C:0967H         LINE#         33
+  C:0967H         LINE#         34
+  C:0967H         LINE#         35
+  C:0969H         LINE#         36
+  C:0969H         LINE#         37
+  C:0969H         LINE#         38
+  C:096CH         LINE#         39
+  C:096EH         LINE#         40
+  -------         ENDPROC       _DATA
+  -------         PROC          _STRING
+  D:0008H         SYMBOL        p
+  C:0915H         LINE#         42
+  C:091BH         LINE#         43
+  C:091BH         LINE#         44
+  C:0926H         LINE#         45
+  C:0939H         LINE#         46
+  -------         ENDPROC       _STRING
+  -------         PROC          MAIN
+  C:0800H         LINE#         48
+  C:0800H         LINE#         49
+  C:0800H         LINE#         50
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  08/30/2021  12:23:26  PAGE 4
+
+
+  C:0802H         LINE#         51
+  C:0804H         LINE#         52
+  C:0806H         LINE#         53
+  C:0808H         LINE#         54
+  C:080AH         LINE#         55
+  C:080FH         LINE#         56
+  C:0814H         LINE#         57
+  C:0819H         LINE#         58
+  C:0822H         LINE#         59
+  C:0827H         LINE#         60
+  C:0830H         LINE#         61
+  C:0835H         LINE#         62
+  C:083AH         LINE#         63
+  C:083AH         LINE#         64
+  C:083AH         LINE#         65
+  C:083DH         LINE#         66
+  C:083DH         LINE#         67
+  C:083FH         LINE#         68
+  C:0847H         LINE#         69
+  C:084CH         LINE#         70
+  C:0855H         LINE#         71
+  C:085AH         LINE#         72
+  C:0863H         LINE#         74
+  C:0865H         LINE#         76
+  C:0865H         LINE#         77
+  C:0867H         LINE#         78
+  C:086FH         LINE#         79
+  C:0874H         LINE#         80
+  C:087DH         LINE#         81
+  C:0882H         LINE#         82
+  C:088BH         LINE#         83
+  C:088BH         LINE#         84
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        DROWSY
+
+  -------         MODULE        ?C?CLDPTR
+  C:093AH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0159H BYTE (16%) *
+******************************************************************************
+
+Program Size: data=14.0 xdata=0 code=370
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
